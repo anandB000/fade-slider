@@ -1,6 +1,3 @@
-div#postimagediv {
-	display: none;
-}
 #fadeslider_add_slide h2,#fadeslider_add_slide .handlediv{
 	display: none;
 }
@@ -19,14 +16,6 @@ div#postimagediv {
 }
 #fadeslider_add_slide table.widefat{
 	border: none;
-}
-.append_slide{
-	clear: both;
-	overflow: hidden;
-	padding: 8px;
-}
-#post-body #normal-sortables {
-    min-height: 0;
 }
 .slide-thum{
 	position: relative;

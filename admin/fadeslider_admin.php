@@ -1,7 +1,13 @@
 <?php
+//Hide featured image meta
+add_action( 'do_meta_boxes', 'remove_featured_meta' );
+function remove_featured_meta() {
+    remove_meta_box( 'postimagediv','fade_slider','side' );
+}
+
 //Fade slider Post Type
 add_action( 'init', 'slider_post' ); 
-function slider_post(){
+function slider_post() {
 	$labels = array(
 		'name' => _x('Sliders', 'fadeslider'),
 		'singular_name' => _x('Slider', 'fadeslider'),
@@ -35,6 +41,7 @@ function slider_post(){
 	); 
 	register_post_type( 'fade_slider', $args );
 }
+
 //Enqueue Scripts
 add_action( 'admin_enqueue_scripts', 'fadeslider_adminscripts' );
 function fadeslider_adminscripts() { 
@@ -47,12 +54,14 @@ function fadeslider_adminscripts() {
 		'nonce' => wp_create_nonce('ajax-nonce')
 	));
 }
+
 //Slider Meta's
 add_action( 'admin_init', 'fade_slider_metaboxes' );
 function fade_slider_metaboxes() {
 	add_meta_box('fadeslider_add_slide'	,__( 'Add Slides', 'fadeslider' ),'fade_meta_box_add_slide' ,'fade_slider','advanced','default');
 	add_meta_box('fadeslider_slider_options',__( 'Slider Options', 'fadeslider' ),'fadeslider_options' ,'fade_slider','side','default');
 }
+
 function fadeslider_options( $post ){ 
 wp_nonce_field( 'fadeslider_options', 'fadeslider_options_nonce' );
 ?>
@@ -109,6 +118,7 @@ wp_nonce_field( 'fadeslider_options', 'fadeslider_options_nonce' );
 		</p>
 	</div>
 <?php }
+
 function fade_meta_box_add_slide( $post ){ 
 	wp_nonce_field( 'fade_meta_box_add_slide', 'fade_meta_box_add_slide_nonce' );
 	$get_attachmentids = get_post_meta($post->ID,'slide_attachmenid',true);
@@ -157,6 +167,7 @@ function fade_meta_box_add_slide( $post ){
 </div>
 <?php	
 }
+
 //Meta save
 add_action( 'save_post', 'save' );
 function save( $post_id ) {
@@ -210,7 +221,7 @@ function save( $post_id ) {
 		update_post_meta( $post_id, 'interval' , $interval );
 	}
 }
-	
+
 //Admin Ajax
 // Slider Save Ajax
 add_action('wp_ajax_nopriv_fadeslider_ajax', 'fadeslider_ajax' );
@@ -315,5 +326,6 @@ function fadeslider_ajax( ) {
 		<?php }
 		//}
 	}
+
 	die();
 }
