@@ -1,7 +1,7 @@
 === Fade Slider ===
 Contributors: anand000
 Tags: Meta slider, Slider, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Responsive Slider, Slider, Bootstrap, Image Slider, Fade, Slide, Bootstrap carousel, Carousel, Image carousel,Fade slideshow, Slideshow, Just slider, Simple fade slider, Simple slideshow, fading,Responsive,photo slider
-Tested up to: 4.8.1
+Tested up to: 4.9.4
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -72,6 +72,10 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 * Multi slide options added.
 * Slide title, description and url fields added
 * Light weight plugin
+
+= 2.1 =
+
+* Update metabox issues
 
 == Upgrade Notice ==
 
