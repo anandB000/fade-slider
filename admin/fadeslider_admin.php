@@ -182,6 +182,8 @@ function fade_meta_box_add_slide( $post ){
 							<td>
 								<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
 									<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
+									<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons 
+dashicons-edit edit_slide"></span>
 								</div>
 							</td>
 							<td>
@@ -296,7 +298,7 @@ function fadeslider_ajax( ) {
 		$get_desc = get_post_meta( $wpfadeslider_id, 'fade-slide-desc', true);
 		
 		$get_attachmentids = get_post_meta($wpfadeslider_id,'slide_attachmenid',true);
-		if($get_attachmentids){
+		if( $get_attachmentids ) {
 			$merge_attachments = array_merge($get_attachmentids,$wpfadeslide_ids);
 			$save_slideids = update_post_meta($wpfadeslider_id,'slide_attachmenid',$merge_attachments);
 			
@@ -317,7 +319,7 @@ function fadeslider_ajax( ) {
 					</td>
 				</tr>
 			<?php }
-		}else{
+		} else {
 			$save_slideids = update_post_meta($wpfadeslider_id,'slide_attachmenid',$wpfadeslide_ids);
 			
 			$get_attachmentids = get_post_meta($wpfadeslider_id,'slide_attachmenid',true);
@@ -385,6 +387,19 @@ function fadeslider_ajax( ) {
 			</tr>
 		<?php }
 		//}
+	}
+	else if($_POST['mode'] == 'edit_slide'){
+		$wpfadeslider_id = $_POST['slider_id'];
+		$wpfadeslide_ids = $_POST['selection'];
+
+		/*print_r($wpfadeslide_ids[0]);
+		?>
+			<td>
+				<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $wpfadeslide_ids[0] );?>');">
+					<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="dashicons dashicons-trash delete_slide"></span>
+				</div>
+			</td>
+		<?php */
 	}
 
 	die();
