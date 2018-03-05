@@ -42,9 +42,9 @@ function display_fade_slider_fun( $atts ) {
 				$slide_desc = get_post_meta($post->ID,'fade-slide-desc',true); 
 				$slide_url = get_post_meta($post->ID,'fade-slide-url',true); ?>
 				<div class="item <?php if( $i == 0 ){?> active <?php }?>">
-				<?php $image_attributes = wp_get_attachment_image_src($slide,'full'); ?>
+				<?php $image_attributes = wp_get_attachment_image_src( $slide,'fade-slider-size-'.$post->ID ); ?>
 					<?php if($slide_url[$key]){ ?><a href="<?php echo esc_url($slide_url[$key],array('http', 'https')); ?>" target="_blank"><?php } ?>
-						<img src="<?php echo $image_attributes[0]; ?>" alt="<?php $post->post_title;?>">
+						<img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>"alt="<?php $post->post_title;?>">
 					<?php if($slide_url[$key]){ echo '</a>'; } ?>
 					<div class="carousel-caption hidden-sm ">
 						<div class="display-sec">

@@ -1,4 +1,28 @@
 <?php
+
+add_action( 'admin_init', 'fade_slider_image_size' );
+function fade_slider_image_size(){
+	global $post;
+	$arg = array(
+		'numberposts' => -1,
+		'post_type' => 'fade_slider',
+	);
+	$posts = get_posts( $arg );
+	foreach( $posts as $post ) { setup_postdata( $post );
+		$width = get_post_meta( $post->ID, 'width', true );
+		$height = get_post_meta( $post->ID, 'height', true );
+
+		if( !$width ) {
+			$width = 1200;
+		}
+		if( !$height ) {
+			$height = 350;
+		}
+
+		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );	
+	}
+}
+
 //Hide featured image meta
 add_action( 'do_meta_boxes', 'remove_featured_meta' );
 function remove_featured_meta() {
@@ -109,6 +133,16 @@ wp_nonce_field( 'fadeslider_options', 'fadeslider_options_nonce' );
 	</div>
 	<div class="fadeslider-options">
 		<p>
+			<label><?php _e( 'Slider Width', 'fadeslider' );?></label>
+			<input type="text" name="fade_option_dimention[width]" class="ui-corner-all fade-form-control" value="<?php $width = get_post_meta( $post->ID, 'width', true); if( $width ) { echo $width; } ?>" />
+		</p>
+		<p>
+			<label><?php _e( 'Slider Height', 'fadeslider' );?></label>
+			<input type="text" name="fade_option_dimention[height]" class="ui-corner-all fade-form-control" value="<?php $height = get_post_meta( $post->ID, 'height', true); if( $height ) { echo $height; } ?>" />
+		</p>
+	</div>
+	<div class="fadeslider-options">
+		<p>
 			<label><?php _e( 'Set Interval', 'fadeslider' );?></label>
 			<select name="interval" class="fade-form-control" id="interval">
 				<?php for( $j = 1000; $j <= 10000; $j+=1000 ){?>
@@ -181,23 +215,25 @@ function save( $post_id ) {
 
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 		return $post_id;
-	if(isset($_POST['fade-slide-title'])){
-		foreach($_POST['fade-slide-title'] as $fade_titles){
-			$fadeslide_titles[] = sanitize_text_field($fade_titles);
+	if( isset( $_POST['fade-slide-title'] ) ) {
+		foreach( $_POST['fade-slide-title'] as $fade_titles ) {
+			$fadeslide_titles[] = sanitize_text_field( $fade_titles );
 		}	
 		update_post_meta( $post_id, 'fade-slide-title', $fadeslide_titles );
 	}
-	if(isset($_POST['fade-slide-url'])){
-		foreach($_POST['fade-slide-url'] as $fade_urls){
-			$fadeslide_urls[] = esc_url($fade_urls,array('http', 'https'));
+
+	if( isset( $_POST['fade-slide-url'] ) ) {
+		foreach($_POST['fade-slide-url'] as $fade_urls) {
+			$fadeslide_urls[] = esc_url( $fade_urls,array( 'http', 'https' ) );
 		}
 		update_post_meta( $post_id, 'fade-slide-url', $fadeslide_urls );
 	}
-	if(isset($_POST['fade-slide-desc'])){
-		foreach($_POST['fade-slide-desc'] as $fade_decs){
-			$fadeslide_decs[] = sanitize_text_field($fade_decs);
+
+	if( isset( $_POST['fade-slide-desc'] ) ) {
+		foreach( $_POST['fade-slide-desc'] as $fade_decs ) {
+			$fadeslide_decs[] = sanitize_text_field( $fade_decs );
 		}	
-		update_post_meta( $post_id, 'fade-slide-desc', $fadeslide_decs);
+		update_post_meta( $post_id, 'fade-slide-desc', $fadeslide_decs );
 	}
 
 	if ( ! isset( $_POST['fadeslider_options_nonce'] ) )
@@ -210,16 +246,40 @@ function save( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 		return $post_id;
 	
-	if(isset($_POST['fade_options'])){
-		foreach($_POST['fade_options'] as $key=>$fade_options){
-			$options = sanitize_text_field($fade_options);
+	if( isset( $_POST['fade_options'] ) ) {
+		foreach( $_POST['fade_options'] as $key=>$fade_options ){
+			$options = sanitize_text_field( $fade_options );
 			update_post_meta( $post_id, $key, $options );
 		}		
 	}
-	if(isset($_POST['interval'])){
+
+	if( isset( $_POST['interval'] ) ) {
 		$interval = absint($_POST['interval']);
 		update_post_meta( $post_id, 'interval' , $interval );
 	}
+	
+	if( isset( $_POST['fade_option_dimention'] ) ) {
+		$width = absint( $_POST['fade_option_dimention']['width'] );
+		$height = absint( $_POST['fade_option_dimention']['height'] );
+
+		if( $width ) {
+			update_post_meta( $post_id, 'width' , $width );
+			$width = get_post_meta( $post_id, 'width', true );
+		} else {
+			$width = 1200;
+		}
+
+		if( $height ) {
+			update_post_meta( $post_id, 'height' , $height );
+			$height = get_post_meta( $post_id, 'height', true );
+		} else {
+			$height = 350;
+		}
+		
+		//Add custom image size
+		add_image_size( 'featured-large', 800, 294, true );
+	}
+
 }
 
 //Admin Ajax
