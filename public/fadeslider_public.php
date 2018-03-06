@@ -10,20 +10,24 @@ function fadeslider_publicscript() {
 	wp_enqueue_script( 'fadeslidebootstrap-min-js', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery' ), 2.0, false );
 }
 add_shortcode('display_fade_slider', 'display_fade_slider_fun');
-function display_fade_slider_fun( $atts ) { ob_start();
-		if( isset($atts['id']) ){
-			$fade_slide = $atts['id'];
-		}else{
-			$FadeID = NULL;
-		}
-		$post = get_post( $fade_slide ); 
-		$slides = get_post_meta( $fade_slide,'slide_attachmenid', true );
-		$animation = get_post_meta( $post->ID, 'animation', true);
-		if($animation == 'Fade'){
-			$fade_class = 'carousel-fade';
-		}
+function display_fade_slider_fun( $atts ) { 
+	ob_start();
+	if( isset($atts['id']) ){
+		$fade_slide = $atts['id'];
+	}else{
+		$FadeID = NULL;
+	}
+	$post = get_post( $fade_slide ); 
+	$slides = get_post_meta( $fade_slide,'slide_attachmenid', true );
+	$animation = get_post_meta( $post->ID, 'animation', true);
+	if($animation == 'Fade'){
+		$fade_class = 'slide carousel-fade';
+	}else{
+		$fade_class = 'slide';
+	}
+	if( $slides ){
 		?>
-		<div id="carousel-fadeslider-<?php echo $post->post_name;?>" class="carousel slide <?php echo $fade_class; ?>" data-ride="carousel" data-interval="<?php echo get_post_meta( $post->ID, 'interval', true ); ?>"  data-pause="<?php echo get_post_meta( $post->ID, 'hover_pass', true ); ?>">
+		<div id="carousel-fadeslider-<?php echo $post->post_name;?>" class="carousel <?php echo $fade_class; ?>" data-ride="carousel" data-interval="<?php echo get_post_meta( $post->ID, 'interval', true ); ?>"  data-pause="<?php echo get_post_meta( $post->ID, 'hover_pass', true ); ?>">
 			<?php if( get_post_meta( $post->ID, 'pager', true ) == 'Show'){?>
 			<ol class="carousel-indicators">
 				<?php $i = 0; foreach( $slides as $slide ){ ?>
@@ -38,11 +42,11 @@ function display_fade_slider_fun( $atts ) { ob_start();
 				$slide_desc = get_post_meta($post->ID,'fade-slide-desc',true); 
 				$slide_url = get_post_meta($post->ID,'fade-slide-url',true); ?>
 				<div class="item <?php if( $i == 0 ){?> active <?php }?>">
-				<?php $image_attributes = wp_get_attachment_image_src($slide,'full'); ?>
+				<?php $image_attributes = wp_get_attachment_image_src( $slide,'fade-slider-size-'.$post->ID ); ?>
 					<?php if($slide_url[$key]){ ?><a href="<?php echo esc_url($slide_url[$key],array('http', 'https')); ?>" target="_blank"><?php } ?>
-						<img src="<?php echo $image_attributes[0]; ?>" alt="<?php $post->post_title;?>">
+						<img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>"alt="<?php $post->post_title;?>">
 					<?php if($slide_url[$key]){ echo '</a>'; } ?>
-					<div class="carousel-caption hidden-sm ">
+				<div class="carousel-caption <?php if( get_post_meta( $post->ID, 'desc_resp', true ) == 'Hide' ) { ?>hidden-sm<?php }?>">
 						<div class="display-sec">
 							<?php if( $slide_title[$key] ){?>
 							<h3><?php echo sanitize_text_field($slide_title[$key]); ?></h3>
@@ -66,9 +70,13 @@ function display_fade_slider_fun( $atts ) { ob_start();
 				</a>
 			<?php }?>
 		</div>
-<?php		
-return ob_get_clean();
+		<?php
+	} else {
+		echo '<h2>Add slide to show!</h2>';
+	}	
+	return ob_get_clean();
 }
+
 function fade_slider_template( $atts ) {
 	echo do_shortcode($atts);
 }
