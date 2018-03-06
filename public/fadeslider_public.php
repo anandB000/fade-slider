@@ -27,7 +27,7 @@ function display_fade_slider_fun( $atts ) {
 	}
 	if( $slides ){
 		?>
-		<div id="carousel-fadeslider-<?php echo $post->post_name;?>" class="carousel slide <?php echo $fade_class; ?>" data-ride="carousel" data-interval="<?php echo get_post_meta( $post->ID, 'interval', true ); ?>"  data-pause="<?php echo get_post_meta( $post->ID, 'hover_pass', true ); ?>">
+		<div id="carousel-fadeslider-<?php echo $post->post_name;?>" class="carousel <?php echo $fade_class; ?>" data-ride="carousel" data-interval="<?php echo get_post_meta( $post->ID, 'interval', true ); ?>"  data-pause="<?php echo get_post_meta( $post->ID, 'hover_pass', true ); ?>">
 			<?php if( get_post_meta( $post->ID, 'pager', true ) == 'Show'){?>
 			<ol class="carousel-indicators">
 				<?php $i = 0; foreach( $slides as $slide ){ ?>
@@ -46,7 +46,7 @@ function display_fade_slider_fun( $atts ) {
 					<?php if($slide_url[$key]){ ?><a href="<?php echo esc_url($slide_url[$key],array('http', 'https')); ?>" target="_blank"><?php } ?>
 						<img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>"alt="<?php $post->post_title;?>">
 					<?php if($slide_url[$key]){ echo '</a>'; } ?>
-					<div class="carousel-caption hidden-sm ">
+				<div class="carousel-caption <?php if( get_post_meta( $post->ID, 'desc_resp', true ) == 'Hide' ) { ?>hidden-sm<?php }?>">
 						<div class="display-sec">
 							<?php if( $slide_title[$key] ){?>
 							<h3><?php echo sanitize_text_field($slide_title[$key]); ?></h3>
