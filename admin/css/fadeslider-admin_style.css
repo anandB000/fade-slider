@@ -4,8 +4,8 @@
 #fadeslider_add_slide .left h3 {
     padding: 7px 5px;
     line-height: 27px;
-    margin: 0;
-    font-size: 14px;
+    margin: 10px auto;
+    font-size: 22px;
 }
 #fadeslider_add_slide .left th {
     padding: 0 7px;
@@ -43,6 +43,7 @@
 }
 .fade-slide-inputs .fade-form-control {
     margin-bottom: 10px;
+    border: 1px solid #333;
 }
 .fade-slide-inputs textarea.fade-form-control {
     margin-bottom: 0px;
@@ -84,4 +85,26 @@
     margin-bottom: 5px;
     display: block;
 	font-weight: 600;
+}
+.fadeslider-options select {
+    margin: auto;
+}
+tr.append_slide td {
+    padding: 18px 30px;
+}
+#fadeslider_appenda {
+    overflow: hidden;
+    padding: 16px;
+}
+#fadeslider_appenda .widefat thead th{
+    border-bottom: 1px solid #006799;
+}
+.slide-thum span {
+    color: #fff;
+    background: #0085ba;
+    padding: 5px;
+    font-size: 20px;
+}
+.slide-thum span:hover {
+    background: #a00;
 }
