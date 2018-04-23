@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'admin_init', 'fade_slider_image_size' );
+add_action( 'init', 'fade_slider_image_size' );
 function fade_slider_image_size(){
 	global $post;
 	$arg = array(
