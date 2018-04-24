@@ -56,8 +56,8 @@ function display_fade_slider_fun( $atts ) {
 					<img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>"alt="<?php echo $post->post_title;?>">
 
 					<?php if ( $slide_url[$key ] ) { echo '</a>'; } ?>
-
-					<div class="carousel-caption <?php if ( get_post_meta( $post->ID, 'desc_resp', true ) == 'Hide' ) { ?>hidden-sm<?php }?>">
+					<?php if ( $slide_title[$key] || $slide_title[$key] ) {?>
+						<div class="carousel-caption <?php if ( get_post_meta( $post->ID, 'desc_resp', true ) == 'Hide' ) { ?>hidden-sm<?php }?>">
 							<div class="display-sec">
 								<?php if ( $slide_title[$key] ) { ?>
 									<h3><?php echo sanitize_text_field( $slide_title[$key] ); ?></h3>
@@ -67,6 +67,7 @@ function display_fade_slider_fun( $atts ) {
 								<?php } ?>
 							</div>
 						</div>
+					<?php }?>
 					</div>
 
 				<?php $i++; } wp_reset_postdata();?>
