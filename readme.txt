@@ -1,23 +1,22 @@
 === Fade Slider ===
 Contributors: anand000
-Tags: Meta slider, Slider, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Responsive Slider, Slider, Bootstrap, Image Slider, Fade, Slide, Bootstrap carousel, Carousel, Image carousel,Fade slideshow, Slideshow, Just slider, Simple fade slider, Simple slideshow, fading,Responsive,photo slider
+Tags: Slider, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Meta slider, Slider, Simple slider,
 Tested up to: 4.9.4
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This is simple and clean bootstrap slider. It have option to choose slider animation Slide (or) Fade and other admin controls. Now its also works non bootstrap themes
+This is simple and clean bootstrap slider. It have option to choose slider animation and other admin controls. Now its also works non bootstrap themes
 
 == Description ==
 
-This is simple and clean bootstrap slider. It have option to choose slider animation Slide (or) Fade and other admin controls. Now its also works non bootstrap themes
+This is simple and clean bootstrap slider. It have option to choose slider animation and other admin controls. Now its also works non bootstrap themes
 
 = Custom Options =
 	
 	1. Install Plugin
-	2. Choose fade or slide
-	3. Add slider and use short code for page or post [display_fade_slider id=SLIDER ID]
-	4. Short code templates <?php fade_slider_template('[display_fade_slider id=SLIDER ID]'); ?>
+	2. Add slider and use short code for page or post [display_fade_slider id=SLIDER ID]
+	3. Short code templates <?php fade_slider_template('[display_fade_slider id=SLIDER ID]'); ?>
 
 = Frequently Asked Questions =
 
@@ -75,8 +74,11 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 
 = 2.1 =
 
+* Admin UI changed
 * Update metabox issues
+* Silder Width and Height option added
+* Slider description have option to show responsive
 
 == Upgrade Notice ==
 
-The current version of WP Smart Fade slider requires WordPress 3.0 or higher. If you use older version of WordPress, you need to upgrade WordPress first.,   
+The current version of Fade slider requires WordPress 3.0 or higher. If you use older version of WordPress, you need to upgrade WordPress first.
