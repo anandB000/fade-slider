@@ -1,12 +1,12 @@
 <?php
 
-// Inclued regenerate thumbnail function
-if ( ! function_exists( 'wp_crop_image' ) ) {
-	include( ABSPATH . 'wp-admin/includes/image.php' );
-}
-
 add_action( 'init', 'reg_fade_slide_image_size' );
 function reg_fade_slide_image_size(){
+	// Inclued regenerate thumbnail function
+	if ( ! function_exists( 'wp_crop_image' ) ) {
+		include( ABSPATH . 'wp-admin/includes/image.php' );
+	}
+
 	global $post;
 	$arg = array(
 		'numberposts' => -1,
