@@ -73,8 +73,8 @@ add_action( 'admin_enqueue_scripts', 'fadeslider_adminscripts' );
 function fadeslider_adminscripts() { 
 	wp_register_style( 'slider_admin_style', plugin_dir_url( __FILE__ ) . 'css/fadeslider-admin_style.css' );
 	wp_enqueue_style( 'slider_admin_style' );
-	
-	wp_enqueue_script( 'fade-sliderjs', plugin_dir_url( __FILE__ ).'js/fadeslider-admin_js.js', array( 'jquery' ), 'v5', false );
+
+	wp_enqueue_script( 'fade-sliderjs', plugin_dir_url( __FILE__ ).'js/fadeslider-admin_js.js', array( 'jquery', 'jquery-ui-droppable', 'jquery-ui-draggable', 'jquery-ui-sortable' ), 'v5', false );
 	wp_localize_script('fade-sliderjs', 'ajax_var', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
 		'nonce' => wp_create_nonce('ajax-nonce'),
@@ -194,9 +194,10 @@ function fade_meta_box_add_slide( $post ) {
 						foreach ( $get_attachmentids as $k => $get_attachmentid ) { ?>
 						<tr class="append_slide">
 							<td>
-								<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
+								<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $get_attachmentid );?>');">
 									<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
 									<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+									<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 								</div>
 							</td>
 							<td>
@@ -207,7 +208,7 @@ function fade_meta_box_add_slide( $post ) {
 								</div>
 							</td>
 						</tr>
-					<?php 
+					<?php
 						}
 					} else {
 						?>
@@ -241,10 +242,15 @@ function save( $post_id ) {
 
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 		return $post_id;
+
+	if ( isset( $_POST['attachment_id'] ) ) {
+		update_post_meta( $post_id, 'slide_attachmenid', $_POST['attachment_id'] );
+	}
+
 	if ( isset( $_POST['fade-slide-title'] ) ) {
 		foreach( $_POST['fade-slide-title'] as $fade_titles ) {
 			$fadeslide_titles[] = sanitize_text_field( $fade_titles );
-		}	
+		}
 		update_post_meta( $post_id, 'fade-slide-title', $fadeslide_titles );
 	}
 
@@ -258,7 +264,7 @@ function save( $post_id ) {
 	if ( isset( $_POST['fade-slide-desc'] ) ) {
 		foreach( $_POST['fade-slide-desc'] as $fade_decs ) {
 			$fadeslide_decs[] = sanitize_text_field( $fade_decs );
-		}	
+		}
 		update_post_meta( $post_id, 'fade-slide-desc', $fadeslide_decs );
 	}
 
@@ -330,6 +336,7 @@ function fadeslider_ajax() {
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
 							<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="dashicons dashicons-trash delete_slide"></span>
 							<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 						</div>
 					</td>
 					<td>
@@ -351,6 +358,7 @@ function fadeslider_ajax() {
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $wpfadeslide_id ); ?>');">
 							<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="delete_slide dashicons dashicons-trash"></span>
 							<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 						</div>
 					</td>
 					<td>
@@ -371,8 +379,7 @@ function fadeslider_ajax() {
 		$get_title = get_post_meta( $wpfadeslider_id, 'fade-slide-title', true);
 		$get_url = get_post_meta( $wpfadeslider_id, 'fade-slide-url', true);
 		$get_desc = get_post_meta( $wpfadeslider_id, 'fade-slide-desc', true);
-		
-		//if (array_key_exists($wpfadeslider_metakey,$get_attachmentids)){
+
 		unset($get_attachmentids[$wpfadeslider_metakey]);
 		$reindex_ids = array_values($get_attachmentids);
 		update_post_meta($wpfadeslider_id,'slide_attachmenid',$reindex_ids);
@@ -392,13 +399,14 @@ function fadeslider_ajax() {
 		$reindex_title = array_values($get_title);
 		update_post_meta($wpfadeslider_id,'fade-slide-title',$reindex_title);
 		$get_title = get_post_meta($wpfadeslider_id,'fade-slide-title',true);
-		
+
 		foreach($get_attachmentids as $k=>$get_attachmentid){ ?>
 			<tr class="append_slide">
 				<td>
 					<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
 						<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="dashicons dashicons-trash delete_slide"></span>
 						<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+						<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 					</div>
 				</td>
 				<td>
@@ -424,6 +432,7 @@ function fadeslider_ajax() {
 			<div class="slide-thum fade-slide-image " style="background-image:url('<?php echo wp_get_attachment_url( $wpattachment_id );?>');">
 				<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
 				<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+				<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $wpattachment_id; ?>">
 			</div>
 			<?php
 		}
