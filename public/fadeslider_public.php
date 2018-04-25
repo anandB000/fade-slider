@@ -43,7 +43,7 @@ function display_fade_slider_fun( $atts ) {
 			<?php }?>
 			<div class="carousel-inner" role="listbox">
 				<?php $i = 0; 
-				foreach ( $slides as $key=>$slide ) { 
+				foreach ( $slides as $key=>$slide ) {
 				$slide_title = get_post_meta( $post->ID, 'fade-slide-title', true );
 				$slide_desc = get_post_meta( $post->ID, 'fade-slide-desc', true );
 				$slide_url = get_post_meta( $post->ID, 'fade-slide-url', true ); ?>

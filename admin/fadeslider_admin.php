@@ -1,5 +1,10 @@
 <?php
 
+// Inclued regenerate thumbnail function
+if ( ! function_exists( 'wp_crop_image' ) ) {
+	include( ABSPATH . 'wp-admin/includes/image.php' );
+}
+
 add_action( 'init', 'reg_fade_slide_image_size' );
 function reg_fade_slide_image_size(){
 	global $post;
@@ -14,14 +19,23 @@ function reg_fade_slide_image_size(){
 		$width = get_post_meta( $post->ID, 'width', true );
 		$height = get_post_meta( $post->ID, 'height', true );
 
-		if( !$width ) {
+		if ( !$width ) {
 			$width = 1200;
 		}
-		if( !$height ) {
+
+		if ( !$height ) {
 			$height = 350;
 		}
 
-		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );	
+		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
+
+		// Regenerating slide image size
+		$attachment_ids = get_post_meta( $post->ID,'slide_attachmenid', true );
+		foreach ( $attachment_ids as $attachment_id ) {
+			$fullsize_path = get_attached_file( $attachment_id );
+			$generate_attach = wp_generate_attachment_metadata( $attachment_id, $fullsize_path );
+			wp_update_attachment_metadata( $attachment_id, $generate_attach );
+		}
 	}
 }
 
