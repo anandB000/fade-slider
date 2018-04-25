@@ -74,6 +74,9 @@ a.right.carousel-control {
 .carousel-inner .item img{
 	width: 100%;
 }
+.display-sec {
+    margin-bottom: 25px;
+}
 @media all and (transform-3d), (-webkit-transform-3d) {
     .carousel-fade .carousel-inner > .item.next,
     .carousel-fade .carousel-inner > .item.active.right {
