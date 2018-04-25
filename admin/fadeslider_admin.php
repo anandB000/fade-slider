@@ -330,7 +330,7 @@ function fadeslider_ajax() {
 			$save_slideids = update_post_meta($wpfadeslider_id,'slide_attachmenid',$merge_attachments);
 			
 			$get_attachmentids = get_post_meta($wpfadeslider_id,'slide_attachmenid',true);
-			foreach($get_attachmentids as $k=>$get_attachmentid){ ?>
+			foreach($get_attachmentids as $k=>$get_attachmentid){?>
 				<tr class="append_slide">
 					<td>
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
@@ -358,7 +358,7 @@ function fadeslider_ajax() {
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $wpfadeslide_id ); ?>');">
 							<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="delete_slide dashicons dashicons-trash"></span>
 							<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
-							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
+							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $wpfadeslide_id; ?>">
 						</div>
 					</td>
 					<td>
