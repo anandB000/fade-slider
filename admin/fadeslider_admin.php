@@ -448,7 +448,7 @@ function fade_slider_admin_style() {
 	if ( 'fade_slider' == $screen->post_type ) {
 		?>
 		<style>
-			#normal-sortables{
+			#normal-sortables,#preview-action, .row-actions span.view {
 				display: none;
 			}
 		</style>
