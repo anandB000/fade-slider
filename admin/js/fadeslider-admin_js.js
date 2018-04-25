@@ -1,12 +1,6 @@
 (function( $ ) {
 	'use strict';
 	$( document ).ready( function() {
-		function Focussave() {
-			$( '.fadelider-wrap' ).on( 'focusout', '.fade-form-control', function() {
-				var value = $(this).val();
-				console.log(value);
-			});
-		}
 
 		var add_slide_wpflexframe;
 		var change_slide_frame;
