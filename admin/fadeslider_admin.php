@@ -440,3 +440,18 @@ function fadeslider_ajax() {
 
 	die();
 }
+
+// Admin head style
+add_action( 'admin_head', 'fade_slider_admin_style' );
+function fade_slider_admin_style() {
+	$screen = get_current_screen();
+	if ( 'fade_slider' == $screen->post_type ) {
+		?>
+		<style>
+			#normal-sortables{
+				display: none;
+			}
+		</style>
+		<?php
+	}
+}
