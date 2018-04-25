@@ -53,7 +53,7 @@
 		});
 
 		// Delete Slide
-		jQuery('.fadelider-wrap').on('click','.delete_slide', function(event){ 
+		jQuery('.fadelider-wrap').on('click','.delete_slide', function(event){
 			var conformation = confirm("Are you sure?");
 			if(conformation == true) { 
 				var attachment_key = $(this).data('delete');
@@ -70,6 +70,10 @@
 				});
 			}
 		});
+
+		// Sortable slide
+		$( ".sortable .ui-sortable" ).sortable();
+		$( ".sortable .ui-sortable" ).disableSelection();
 	});
 
 })( jQuery );
