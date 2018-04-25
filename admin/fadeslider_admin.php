@@ -1,7 +1,7 @@
 <?php
 
-add_action( 'init', 'fade_slider_image_size' );
-function fade_slider_image_size(){
+add_action( 'wp_loaded', 'reg_fade_slide_image_size' );
+function reg_fade_slide_image_size(){
 	global $post;
 	$arg = array(
 		'numberposts' => -1,
