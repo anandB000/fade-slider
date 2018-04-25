@@ -12,7 +12,7 @@ function fadeslider_publicscript() {
 }
 
 add_shortcode('display_fade_slider', 'display_fade_slider_fun');
-function display_fade_slider_fun( $atts ) {
+function display_fade_slider_fun( $atts ) { 
 	ob_start();
 
 	if ( isset($atts['id']) ) {
@@ -43,29 +43,12 @@ function display_fade_slider_fun( $atts ) {
 			<?php }?>
 			<div class="carousel-inner" role="listbox">
 				<?php $i = 0; 
-				foreach ( $slides as $key=>$slide ) {
+				foreach ( $slides as $key=>$slide ) { 
 				$slide_title = get_post_meta( $post->ID, 'fade-slide-title', true );
 				$slide_desc = get_post_meta( $post->ID, 'fade-slide-desc', true );
 				$slide_url = get_post_meta( $post->ID, 'fade-slide-url', true ); ?>
 				<div class="item <?php if ( $i == 0 ) { ?> active <?php }?>">
-				<?php $image_attributes = wp_get_attachment_image_src( $slide,'fade-slider-size-'.$post->ID );
-
-				$attachment_meta = wp_get_attachment_metadata( $slide );
-				foreach ( $attachment_meta as $attachment ) {
-					print_r($attachment);
-					if ( is_array( $attachment )) {
-						//print_r( $attachment );
-						$file = $attachment['fade-slider-size-'.$post->ID]['file'];
-						$width = $attachment['fade-slider-size-'.$post->ID]['width'];
-						$height = $attachment['fade-slider-size-'.$post->ID]['height'];
-					} else {
-						$string = $attachment.',';
-						$string = rtrim($string,',');
-						//echo $string;
-					}
-					//echo $attachment['fade-slider-size-184']['file'];
-				}?>
-
+				<?php $image_attributes = wp_get_attachment_image_src( $slide,'fade-slider-size-'.$post->ID ); ?>
 					<?php if( $slide_url[$key] ) { ?>
 						<a href="<?php echo esc_url($slide_url[$key],array('http', 'https')); ?>" target="_blank">
 					<?php } ?>

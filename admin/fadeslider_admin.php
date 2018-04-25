@@ -1,7 +1,7 @@
 <?php
-// Adding image size
-add_action( 'wp_loaded', 'reg_fade_slide_image_size' );
-function reg_fade_slide_image_size(){
+
+add_action( 'init', 'fade_slider_image_size' );
+function fade_slider_image_size(){
 	global $post;
 	$arg = array(
 		'numberposts' => -1,
@@ -11,9 +11,9 @@ function reg_fade_slide_image_size(){
 	$posts = get_posts( $arg );
 	foreach ( $posts as $post ) {
 		setup_postdata( $post );
-		$width  = get_post_meta( $post->ID, 'width', true );
+		$width = get_post_meta( $post->ID, 'width', true );
 		$height = get_post_meta( $post->ID, 'height', true );
-		$attachment_id = get_post_meta( $post->ID, 'slide_attachmenid', true );
+
 		if( !$width ) {
 			$width = 1200;
 		}
@@ -21,8 +21,7 @@ function reg_fade_slide_image_size(){
 			$height = 350;
 		}
 
-		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
-		$attachment_meta = wp_get_attachment_metadata( $attachment_id );
+		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );	
 	}
 }
 
