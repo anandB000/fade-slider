@@ -455,3 +455,28 @@ function fade_slider_admin_style() {
 		<?php
 	}
 }
+
+// Slider notice messages
+add_filter( 'post_updated_messages', 'fade_slider_updated_messages' );
+function fade_slider_updated_messages( $messages ) {
+	$post = get_post();
+
+	$messages['fade_slider'] = array(
+		0  => '',
+		1  => __( 'Slider updated.' ),
+		2  => __( 'Custom field updated.' ),
+		3  => __( 'Custom field deleted.'),
+		4  => __( 'Slider updated.' ),
+		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Slider restored to revision from %s' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		6  => __( 'Slider published.' ),
+		7  => __( 'Slider saved.' ),
+		8  => __( 'Slider submitted.' ),
+		9  => sprintf(
+			__( 'Slider scheduled for: <strong>%1$s</strong>.' ),
+			date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) )
+		),
+		10 => __( 'Slider draft updated.' )
+	);
+
+	return $messages;
+}
