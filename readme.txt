@@ -1,7 +1,7 @@
 === Fade Slider ===
 Contributors: anand000
-Tags: Slider, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Meta slider, Slider, Simple slider,
-Tested up to: 4.9.4
+Tags: Slider, Carousel, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Meta slider, WordPress Slider
+Tested up to: 4.9.5
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -78,6 +78,12 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 * Update metabox issues
 * Silder Width and Height option added
 * Slider description have option to show responsive
+
+= 2.3 =
+
+* Add edit slide option.
+* Add re-order slides option.
+* Add regenerate slide sizes.
 
 == Upgrade Notice ==
 

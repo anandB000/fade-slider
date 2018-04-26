@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Fade Slider
  * Description: This is simple and clean bootstrap slider. It have option to choose slider animation Slide (or) Fade and other admin controls. Now its also works not bootstrap themes
- * Version: 2.1
+ * Version: 2.3
  * Author: Anandaraj Balu
  * Text Domain: fadeslider
  * License: GPL-2.0+
