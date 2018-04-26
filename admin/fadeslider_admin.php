@@ -1,44 +1,4 @@
 <?php
-// Regenerating slide image sizes
-add_action( 'init', 'reg_fade_slide_image_size' );
-function reg_fade_slide_image_size(){
-	// Inclued regenerate thumbnail function
-	if ( ! function_exists( 'wp_crop_image' ) ) {
-		include( ABSPATH . 'wp-admin/includes/image.php' );
-	}
-
-	global $post;
-	$arg = array(
-		'numberposts' => -1,
-		'post_type' => 'fade_slider',
-	);
-
-	$posts = get_posts( $arg );
-	foreach ( $posts as $post ) {
-		setup_postdata( $post );
-		$width = get_post_meta( $post->ID, 'width', true );
-		$height = get_post_meta( $post->ID, 'height', true );
-
-		if ( !$width ) {
-			$width = 1200;
-		}
-
-		if ( !$height ) {
-			$height = 350;
-		}
-
-		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
-
-		// Regenerating slide image sizes
-		$attachment_ids = get_post_meta( $post->ID,'slide_attachmenid', true );
-		foreach ( $attachment_ids as $attachment_id ) {
-			$fullsize_path = get_attached_file( $attachment_id );
-			$generate_attach = wp_generate_attachment_metadata( $attachment_id, $fullsize_path );
-			wp_update_attachment_metadata( $attachment_id, $generate_attach );
-		}
-	}
-}
-
 // Hide featured image meta
 add_action( 'do_meta_boxes', 'remove_featured_meta' );
 function remove_featured_meta() {
@@ -243,9 +203,14 @@ function fade_meta_box_add_slide( $post ) {
 <?php
 }
 
-// Save slider meta
+// Save slider meta and regerate slide image sizes
 add_action( 'save_post', 'save' );
 function save( $post_id ) {
+
+	$post_type = get_post_type($post_id);
+	// If this isn't a 'fade_slider', don't update it.
+	if ( "fade_slider" != $post_type ) return;
+
 	/*Select Theme options*/
 	if ( ! isset( $_POST['fade_meta_box_add_slide_nonce'] ) )
 		return $post_id;
@@ -322,6 +287,41 @@ function save( $post_id ) {
 			$height = 350;
 		}
 	}
+
+	// Inclued regenerate thumbnail function
+	if ( ! function_exists( 'wp_crop_image' ) ) {
+		include( ABSPATH . 'wp-admin/includes/image.php' );
+	}
+
+	global $post;
+	$arg = array(
+		'numberposts' => -1,
+		'post_type' => 'fade_slider',
+	);
+
+	$posts = get_posts( $arg );
+	foreach ( $posts as $post ) {
+		setup_postdata( $post );
+		$width = get_post_meta( $post->ID, 'width', true );
+		$height = get_post_meta( $post->ID, 'height', true );
+
+		if ( !$width ) {
+			$width = 1200;
+		}
+
+		if ( !$height ) {
+			$height = 350;
+		}
+
+		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
+		// Regenerating slide image sizes
+		$attachment_ids = get_post_meta( $post->ID,'slide_attachmenid', true );
+		foreach ( $attachment_ids as $attachment_id ) {
+			$fullsize_path = get_attached_file( $attachment_id );
+			$generate_attach = wp_generate_attachment_metadata( $attachment_id, $fullsize_path );
+			wp_update_attachment_metadata( $attachment_id, $generate_attach );
+		}
+	}
 }
 
 // Slider Save Ajax
@@ -386,10 +386,10 @@ function fadeslider_ajax() {
 
 		$wpfadeslider_id      = $_POST['slider_id'];
 		$wpfadeslider_metakey = $_POST['attachment_key'];
-		$get_attachmentids = get_post_meta( $wpfadeslider_id, 'slide_attachmenid', true );
-		$get_title         = get_post_meta( $wpfadeslider_id, 'fade-slide-title', true );
-		$get_url           = get_post_meta( $wpfadeslider_id, 'fade-slide-url', true );
-		$get_desc          = get_post_meta( $wpfadeslider_id, 'fade-slide-desc', true );
+		$get_attachmentids    = get_post_meta( $wpfadeslider_id, 'slide_attachmenid', true );
+		$get_title            = get_post_meta( $wpfadeslider_id, 'fade-slide-title', true );
+		$get_url              = get_post_meta( $wpfadeslider_id, 'fade-slide-url', true );
+		$get_desc             = get_post_meta( $wpfadeslider_id, 'fade-slide-desc', true );
 
 		unset( $get_attachmentids[$wpfadeslider_metakey] );
 		$reindex_ids = array_values( $get_attachmentids );
