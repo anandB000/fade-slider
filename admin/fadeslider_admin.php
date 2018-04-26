@@ -439,9 +439,7 @@ function fadeslider_ajax() {
 		$get_attachmentid[$k] = $wpattachment_id;
 		$update_slide_id      = update_post_meta( $wpfadeslider_id, 'slide_attachmenid', $get_attachmentid );
 		$get_attachmentid     = get_post_meta( $wpfadeslider_id,'slide_attachmenid',true );
-
-		if ( $update_slide_id ) {
-			?>
+	  ?>
 			<div class="slide-thum fade-slide-image " style="background-image:url('<?php echo wp_get_attachment_url( $wpattachment_id );?>');">
 				<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
 				<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
@@ -449,7 +447,7 @@ function fadeslider_ajax() {
 				<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $wpattachment_id; ?>">
 			</div>
 			<?php
-		}
+		//}
 	}
 
 	die();
