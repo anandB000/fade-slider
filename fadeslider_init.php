@@ -32,12 +32,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+add_action( 'admin_menu', 'remove_menu_items' );
 function remove_menu_items() {
-    if ( !current_user_can( 'administrator' ) ) {
+    if ( ! current_user_can( 'administrator' ) ) {
         remove_menu_page( 'edit.php?post_type=fade_slider' );
     }
 }
 
-add_action( 'admin_menu', 'remove_menu_items' );
 include('admin/fadeslider_admin.php');
 include('public/fadeslider_public.php');
