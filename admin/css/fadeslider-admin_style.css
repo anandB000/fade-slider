@@ -108,3 +108,17 @@ tr.append_slide td {
 .slide-thum span:hover {
     background: #a00;
 }
+img#slide-loader {
+    display: block;
+    margin: auto;
+    position: relative;
+}
+span.dashicons.dashicons-sort{
+    cursor: move;
+}
+.fade-slide-image span {
+    display: none;
+}
+.fade-slide-image:hover span {
+    display: block;
+}

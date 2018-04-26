@@ -36,7 +36,7 @@
 					selection: slide_attachmentids,
 					mode: 'slider_save'
 				};
-
+				$( '#fade_append' ).html('<tr><td><img id="slide-loader" src="../wp-admin/images/wpspin_light-2x.gif"></td></tr>');
 				jQuery.post(ajax_var.ajax_url, data, function( response ) {
 					$( '#fade_append' ).html( response );
 				});
@@ -49,7 +49,9 @@
 		// Delete Slide
 		jQuery('.fadelider-wrap').on('click','.delete_slide', function(event){
 			var conformation = confirm("Are you sure?");
-			if(conformation == true) { 
+			var td = $( this ).closest('td');
+			if(conformation == true) {
+				$( td ).html('<tr><td><img id="slide-loader" src="../wp-admin/images/wpspin_light-2x.gif"></td></tr>');
 				var attachment_key = $(this).data('delete');
 				var SliderID = $(this).data('slider_id');
 				var data = {
@@ -81,6 +83,7 @@ function edit_slide( edit ) {
 	var post_id = $( edit ).data( 'slider_id' );
 	var key = $( edit ).data( 'edit' );
 	var td = $( edit ).closest('td');
+	$( td ).html('<tr><td><img id="slide-loader" src="../wp-admin/images/wpspin_light-2x.gif"></td></tr>');
 	
 	if ( add_slide_wpflexframe ) {
 		add_slide_wpflexframe.open();

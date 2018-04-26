@@ -211,6 +211,7 @@ function fade_meta_box_add_slide( $post ) {
 								<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $get_attachmentid );?>');">
 									<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
 									<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+									<span class="dashicons dashicons-sort move_slide"></span>
 									<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 								</div>
 							</td>
@@ -350,6 +351,7 @@ function fadeslider_ajax() {
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
 							<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="dashicons dashicons-trash delete_slide"></span>
 							<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+							<span class="dashicons dashicons-sort move_slide"></span>
 							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 						</div>
 					</td>
@@ -372,6 +374,7 @@ function fadeslider_ajax() {
 						<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url( $wpfadeslide_id ); ?>');">
 							<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="delete_slide dashicons dashicons-trash"></span>
 							<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+							<span class="dashicons dashicons-sort move_slide"></span>
 							<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $wpfadeslide_id; ?>">
 						</div>
 					</td>
@@ -420,6 +423,7 @@ function fadeslider_ajax() {
 					<div class="slide-thum fade-slide-image" style="background-image:url('<?php echo wp_get_attachment_url($get_attachmentid);?>');">
 						<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo $wpfadeslider_id; ?>" class="dashicons dashicons-trash delete_slide"></span>
 						<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+						<span class="dashicons dashicons-sort move_slide"></span>
 						<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $get_attachmentid; ?>">
 					</div>
 				</td>
@@ -446,6 +450,7 @@ function fadeslider_ajax() {
 			<div class="slide-thum fade-slide-image " style="background-image:url('<?php echo wp_get_attachment_url( $wpattachment_id );?>');">
 				<span data-delete="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-trash delete_slide"></span>
 				<span data-edit="<?php echo $k; ?>" data-slider_id="<?php echo get_the_ID(); ?>" class="dashicons dashicons-edit edit_slide" onclick="edit_slide( this )"></span>
+				<span class="dashicons dashicons-sort move_slide"></span>
 				<input type="hidden" name="attachment_id[]" id="storable-id" value="<?php echo $wpattachment_id; ?>">
 			</div>
 			<?php
