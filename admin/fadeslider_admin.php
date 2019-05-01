@@ -19,7 +19,7 @@ function slider_post() {
 		'view_item' => __('View Slider', 'fadeslider'),
 		'search_items' => __('Search Sliders', 'fadeslider'),
 		'not_found' =>  __('No Sliders found', 'fadeslider'),
-		'not_found_in_trash' => __('No Sliders found in Trash', 'fadeslider'), 
+		'not_found_in_trash' => __('No Sliders found in Trash', 'fadeslider'),
 		'parent_item_colon' => '',
 		'menu_name' => __('Fade Slider', 'fadeslider'),
 	);
@@ -27,16 +27,16 @@ function slider_post() {
 		'labels' => $labels,
 		'public' => false,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'capability_type' => 'post',
-		'has_archive' => true, 
+		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-images-alt2',
-		'supports' =>array( 
-			'title','thumbnail' 
+		'supports' =>array(
+			'title','thumbnail'
 		),
 	);
 	register_post_type( 'fade_slider', $args );
@@ -219,7 +219,7 @@ function save( $post_id ) {
 	if ( ! wp_verify_nonce( $nonce, 'fade_meta_box_add_slide' ) )
 		return $post_id;
 
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 		return $post_id;
 
 	if ( isset( $_POST['attachment_id'] ) ) {
@@ -254,9 +254,9 @@ function save( $post_id ) {
 	if ( ! wp_verify_nonce( $nonce, 'fadeslider_options' ) )
 		return $post_id;
 
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 		return $post_id;
-	
+
 	if ( isset( $_POST['fade_options'] ) ) {
 		foreach ( $_POST['fade_options'] as $key=>$fade_options ) {
 			$options = sanitize_text_field( $fade_options );
@@ -273,19 +273,8 @@ function save( $post_id ) {
 		$width  = absint( $_POST['fade_option_dimention']['width'] );
 		$height = absint( $_POST['fade_option_dimention']['height'] );
 
-		if ( $width ) {
-			update_post_meta( $post_id, 'width' , $width );
-			$width = get_post_meta( $post_id, 'width', true );
-		} else {
-			$width = 1200;
-		}
-
-		if ( $height ) {
-			update_post_meta( $post_id, 'height' , $height );
-			$height = get_post_meta( $post_id, 'height', true );
-		} else {
-			$height = 350;
-		}
+		update_post_meta( $post_id, 'width' , $width );
+		update_post_meta( $post_id, 'height' , $height );
 	}
 
 	// Inclued regenerate thumbnail function
@@ -305,15 +294,11 @@ function save( $post_id ) {
 		$width = get_post_meta( $post->ID, 'width', true );
 		$height = get_post_meta( $post->ID, 'height', true );
 
-		if ( !$width ) {
-			$width = 1200;
+		if ( $width || $height ) {
+			add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
 		}
 
-		if ( !$height ) {
-			$height = 350;
-		}
-
-		add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
+		//add_image_size( 'fade-slider-size-'.$post->ID, $width, $height, true );
 		// Regenerating slide image sizes
 		$attachment_ids = get_post_meta( $post->ID,'slide_attachmenid', true );
 		foreach ( $attachment_ids as $attachment_id ) {

@@ -1,7 +1,7 @@
 <?php
 // Enqueue public scripts
 add_action( 'wp_enqueue_scripts', 'fadeslider_publicscript' );
-function fadeslider_publicscript() { 
+function fadeslider_publicscript() {
 	wp_register_style( 'fadesliderpublic_style', plugin_dir_url( __FILE__ ) . 'css/fadeslider_style.css' );
 	wp_enqueue_style( 'fadesliderpublic_style' );
 	wp_register_style( 'fadeslidebootstrap_style', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css' );
@@ -20,7 +20,7 @@ function display_fade_slider_fun( $atts ) {
 		$FadeID = NULL;
 	}
 
-	$post      = get_post( $fade_slide ); 
+	$post      = get_post( $fade_slide );
 	$slides    = get_post_meta( $fade_slide, 'slide_attachmenid', true );
 	$animation = get_post_meta( $post->ID, 'animation', true );
 
@@ -41,7 +41,7 @@ function display_fade_slider_fun( $atts ) {
 				</ol>
 			<?php }?>
 			<div class="carousel-inner" role="listbox">
-				<?php $i = 0; 
+				<?php $i = 0;
 				foreach ( $slides as $key=>$slide ) {
 					$slide_title = get_post_meta( $post->ID, 'fade-slide-title', true );
 					$slide_desc  = get_post_meta( $post->ID, 'fade-slide-desc', true );
