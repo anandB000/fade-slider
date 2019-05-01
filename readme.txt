@@ -1,8 +1,7 @@
 === Fade Slider ===
 Contributors: anand000
 Tags: Slider, Carousel, Bootstrap Fade Slider, Fade Slider, Bootstrap Slider, Meta slider, WordPress Slider
-Tested up to: 4.9.5
-Stable tag: 4.3
+Tested up to: 5.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +12,7 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 This is simple and clean bootstrap slider. It have option to choose slider animation and other admin controls. Now its also works non bootstrap themes
 
 = Custom Options =
-	
+
 	1. Install Plugin
 	2. Add slider and use short code for page or post [display_fade_slider id=SLIDER ID]
 	3. Short code templates <?php fade_slider_template('[display_fade_slider id=SLIDER ID]'); ?>
@@ -27,7 +26,7 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 2. Its required any JS or CSS file?
 
 	No, Not needed. Its working on Bootstrap default JS and Css
-	
+
 	http://getbootstrap.com/javascript/#carousel
 
 == Installation ==
@@ -43,12 +42,12 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 2. Its required any JS or CSS file?
 
 	No, Not needed. Its working on Bootstrap default JS and Css
-	
+
 	http://getbootstrap.com/javascript/#carousel
 
 == Screenshots ==
 
-1. screenshot-1.png 
+1. screenshot-1.png
 2. screenshot-2.png
 
 
@@ -56,7 +55,7 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 
 = 1.0 =
 
-* New: Fade Slider plugin 
+* New: Fade Slider plugin
 
 = 1.1 =
 
