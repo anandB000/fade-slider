@@ -21,13 +21,13 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 
 1. Which version bootstrap theme required for this plugin?
 
-	Bootstrap 3.3.7 or later but it works non bootstrap themes
+	Bootstrap 4.3.1 or later but it works non bootstrap themes
 
 2. Its required any JS or CSS file?
 
 	No, Not needed. Its working on Bootstrap default JS and Css
 
-	http://getbootstrap.com/javascript/#carousel
+	https://getbootstrap.com/docs/4.3/components/carousel/
 
 == Installation ==
 
@@ -37,13 +37,13 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 
 1. Which version bootstrap theme required for this plugin?
 
-	Bootstrap 3.3.7 or later but it works non bootstrap themes
+	Bootstrap 4.3.1 or later but it works non bootstrap themes
 
 2. Its required any JS or CSS file?
 
 	No, Not needed. Its working on Bootstrap default JS and Css
 
-	http://getbootstrap.com/javascript/#carousel
+	https://getbootstrap.com/docs/4.3/components/carousel/
 
 == Screenshots ==
 
@@ -84,6 +84,11 @@ This is simple and clean bootstrap slider. It have option to choose slider anima
 * Add re-order slides option.
 * Add regenerate slide sizes.
 
+= 2.5 =
+
+* Update bootstrap 4.3.1.
+* Fixed slide dimention issue.
+
 == Upgrade Notice ==
 
-The current version of Fade slider requires WordPress 3.0 or higher. If you use older version of WordPress, you need to upgrade WordPress first.
+The current version of Fade slider requires WordPress 4.0 or higher. If you use older version of WordPress, you need to upgrade WordPress first.
