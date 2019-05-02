@@ -3,15 +3,36 @@
 .display-sec p {
     color: #ffffff;
 }
+
 a.carousel-control:hover,
 a.carousel-control:focus {
     color: #fff !important;
 }
+
 .carousel-inner .item img {
     width: 100%;
 }
+
 .display-sec {
     margin-bottom: 25px;
+}
+
+.slide .carousel-indicators {
+    bottom: -15px !important;
+}
+
+.slide .carousel-caption {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.display-sec h3 {
+    font-size: 18px;
+}
+
+.display-sec p {
+    margin-bottom: 1.5em;
+    font-size: 14px;
 }
 
 /* Responsive styles */
@@ -24,6 +45,7 @@ a.carousel-control:focus {
         padding-bottom: 0;
         bottom: 0;
     }
+
     .slide .display-sec h3 {
      margin: 8px auto;
     }
@@ -32,6 +54,7 @@ a.carousel-control:focus {
     .slide .display-sec h3{
         margin: 8px auto;
     }
+
     .slide .carousel-caption {
         position: relative;
         right: 0;
@@ -45,6 +68,7 @@ a.carousel-control:focus {
         background: rgba(0, 0, 0,0.5);
         top: 0;
     }
+
     .slide .carousel-caption p {
         margin-bottom: 1.6em;
     }
