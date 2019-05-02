@@ -28,7 +28,7 @@
 				selection.map( function(attachment) {
 					attachment = attachment.toJSON();
 					slide_attachmentids.push(attachment.id);
-				}); 
+				});
 
 				var data = {
 					action: 'fadeslider_ajax',
@@ -83,8 +83,7 @@ function edit_slide( edit ) {
 	var post_id = $( edit ).data( 'slider_id' );
 	var key = $( edit ).data( 'edit' );
 	var td = $( edit ).closest('td');
-	$( td ).html('<tr><td><img id="slide-loader" src="../wp-admin/images/wpspin_light-2x.gif"></td></tr>');
-	
+
 	if ( add_slide_wpflexframe ) {
 		add_slide_wpflexframe.open();
 		return;
@@ -96,7 +95,7 @@ function edit_slide( edit ) {
 		library: {type: 'image'}
 	});
 	add_slide_wpflexframe.on('insert', function() {
-		
+
 		var selection = add_slide_wpflexframe.state().get('selection');
 		var attachment_id = '';
 		selection.map(function(attachment) {
