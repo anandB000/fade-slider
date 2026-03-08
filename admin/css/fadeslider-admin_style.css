@@ -1,3 +1,6 @@
+#fadeslider_add_slide .handle-actions {
+    display: none !important;
+}
 /* Admin style */
 #fadeslider_add_slide h2,
 #fadeslider_add_slide .handlediv {
@@ -118,9 +121,4 @@ img#slide-loader {
 span.dashicons.dashicons-sort {
     cursor: move;
 }
-.fade-slide-image span {
-    display: none;
-}
-.fade-slide-image:hover span {
-    display: block;
-}
+

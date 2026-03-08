@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name: Fade Slider
- * Description: This is simple and clean bootstrap slider. It have option to choose slider animation Slide (or) Fade and other admin controls. Now its also works not bootstrap themes
- * Version: 2.3
+ * Description: Modern Bootstrap 5.3 carousel slider with smooth fade/slide animations, responsive design, drag-drop reordering, and touch/keyboard support
+ * Version: 2.6
  * Author: Anandaraj Balu
  * Text Domain: fadeslider
  * License: GPL-2.0+
@@ -11,7 +11,7 @@
  * Domain Path: /languages
 */
 
-/*  Copyright 2014-2017 Anandaraj B (email: anandrajbalu00 at gmail.com)
+/*  Copyright 2014-2026 Anandaraj B (email: anandrajbalu00 at gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,5 +39,13 @@ function remove_menu_items() {
     }
 }
 
-include('admin/fadeslider_admin.php');
-include('public/fadeslider_public.php');
+$admin_file = plugin_dir_path( __FILE__ ) . 'admin/fadeslider_admin.php';
+$public_file = plugin_dir_path( __FILE__ ) . 'public/fadeslider_public.php';
+
+if ( file_exists( $admin_file ) ) {
+	include( $admin_file );
+}
+
+if ( file_exists( $public_file ) ) {
+	include( $public_file );
+}
