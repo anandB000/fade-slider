@@ -1,32 +1,34 @@
 === Fade Slider ===
 Contributors: anand000
-Tags: Slider, Carousel, Fade Slider, Vanilla JS Carousel, WordPress Slider, Responsive Slider
+Tags: Slider, Carousel, Image Carousel, Bootstrap Slider, Fade Slider, Slide Animation, Responsive Carousel, WordPress Slider Plugin, Touch Navigation, Image Gallery Slider
 Tested up to: 6.9
 Requires: 5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A modern, responsive carousel slider plugin with smooth fade/slide animations. No Bootstrap required - uses pure CSS and vanilla JavaScript for maximum compatibility.
+Professional Bootstrap carousel slider for WordPress. Beautiful fade and slide animations, touch support, responsive design, and easy shortcode integration.
 
 == Description ==
 
-Fade Slider is a lightweight, modern carousel/slider plugin built with pure CSS and vanilla JavaScript. It provides smooth fade and slide animations with full responsiveness and works seamlessly with any WordPress theme without requiring Bootstrap or any framework dependencies.
+**Fade Slider** is a powerful Bootstrap-based carousel and image slider plugin for WordPress. Create stunning, responsive image carousels with smooth fade and slide animations. Perfect for showcasing products, portfolios, testimonials, and image galleries with full touch and keyboard navigation support.
+
+Fade Slider combines the reliability of Bootstrap with modern responsive design to deliver a high-performance slider that works perfectly on mobile, tablet, and desktop devices. No coding required - manage everything from the WordPress admin panel.
 
 = Key Features =
 
-* Pure CSS and vanilla JavaScript carousel - no framework dependencies
-* Bootstrap-free implementation - works with any theme design
-* Fade and slide animation modes with smooth CSS transitions
-* Fully responsive design (mobile, tablet, desktop)
-* Adaptive height scaling for different screen sizes
-* Touch and keyboard navigation support
-* Customizable interval, pause behavior, and autoplay
-* Slide titles, descriptions, and clickable URLs
-* Indicator dots and navigation arrows
-* Responsive caption display with mobile optimization
-* **Drag and drop slide reordering with visual feedback**
-* **Auto-save slide order when reordered**
-* Zero external library dependencies (no jQuery required for slider)
+* **Bootstrap Carousel** - Built on the trusted Bootstrap framework for reliability and compatibility
+* Fade and Slide **animation modes** with smooth CSS transitions
+* **Fully responsive design** - Automatically adapts to mobile, tablet, and desktop screens
+* **Touch navigation support** - Swipe gestures for mobile and tablet users
+* **Keyboard navigation** - Arrow keys and accessibility features included
+* Adaptive height scaling - Auto-adjusts to 70% on tablet, 60% on mobile
+* Customizable autoplay interval and pause-on-hover behavior
+* **Image slider with multiple media options** - Images, titles, descriptions, and clickable URLs
+* Navigation indicators with dot navigation and arrow controls
+* **Mobile-optimized captions** - Show/hide descriptions on small devices
+* Drag and drop slide reordering with visual feedback and auto-save
+* Easy shortcode integration - No coding required
+* Zero complex setup - Drag, drop, and manage slides easily in WordPress admin
 
 = Custom Options =
 
@@ -57,13 +59,13 @@ Fade Slider is a lightweight, modern carousel/slider plugin built with pure CSS 
 
 = Frequently Asked Questions =
 
-1. Do I need Bootstrap to use this plugin?
+1. What makes Fade Slider different from other carousel plugins?
 
-	No. Fade Slider v2.6+ uses a standalone implementation with pure CSS and vanilla JavaScript. It works independently without any framework dependencies.
+	Fade Slider is built on Bootstrap - the world's most popular CSS framework. This ensures compatibility, reliability, and professional styling out of the box. It's easier to use than vanilla JS sliders and more dependable than untested alternatives.
 
-2. Will this plugin conflict with my theme's CSS?
+2. Is this Bootstrap carousel plugin easy to use?
 
-	No. The plugin uses isolated CSS classes (carousel, carousel-item, carousel-inner, etc.) and vanilla JavaScript that doesn't depend on external libraries. It's designed to be compatible with any theme.
+	Yes. The plugin is designed for WordPress users of all skill levels. Simply install, create a slider in the admin panel, drag and drop your images, and add the shortcode to any page. No coding knowledge required.
 
 3. Does it work on mobile devices?
 
@@ -95,9 +97,10 @@ Fade Slider is a lightweight, modern carousel/slider plugin built with pure CSS 
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/fade-slider/` directory
+1. Install the Bootstrap Carousel Slider plugin directly from WordPress, or upload plugin files to `/wp-content/plugins/fade-slider/`
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to "Fade Slider" in the admin menu
+3. Navigate to **"Fade Slider"** in the WordPress admin menu to access the slider builder
+4. Create a new carousel and start adding images
 4. Create a new slider and configure your options
 5. Add slides with images and optional titles/descriptions
 6. Use the shortcode [display_fade_slider id=SLIDER_ID] in pages or posts
